@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: 1234
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+#        format_sql: true
+        show_sql: true
+
+# ?? ??? ? data.sql ????
+#  sql:
+#    init:
+#      mode: always
