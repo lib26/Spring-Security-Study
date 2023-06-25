@@ -18,6 +18,8 @@ public class JwtSecurityConfig extends SecurityConfigurerAdapter<DefaultSecurity
 
     /**
      * JwtFilter를 통해 Security로직에 필터를 등록한다.
+     * 요청이 UsernamePasswordAuthenticationFilter 로 전달되기 전에
+     * JwtFilter가 먼저 동작하도록해서 JWT 토큰의 유효성 검사 및 인증 처리를 수행하도록 한다.
      */
     @Override
     public void configure(HttpSecurity http) {

@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * 2. JWT를 위한 커스텀 필터를 만들기 위한 클래스
+ * 2. JWT를 위한 Custom 필터를 만들기 위한 클래스
  */
 public class JwtFilter extends GenericFilterBean {
 
@@ -29,7 +29,8 @@ public class JwtFilter extends GenericFilterBean {
     }
 
     /**
-     * 토큰의 인증정보를 SecurityContext에 저장하는 역할 수행
+     * reqeust 헤더로부터 jwt 토큰을 가져와 유효성 검사를 진행한 뒤
+     * 토큰의 인증정보를 Security Context에 저장하는 역할 수행
      */
     @Override
     public void doFilter(ServletRequest servletRequest,
@@ -48,6 +49,9 @@ public class JwtFilter extends GenericFilterBean {
             logger.debug("유효한 JWT 토큰이 없습니다, uri: {}", requestURI);
         }
 
+
+        // doFilter 메서드는 현재 필터의 작업을 완료하고,
+        // 필터 체인의 다음 단계로 요청을 전달하는 역할을 수행한다.
         filterChain.doFilter(servletRequest, servletResponse);
     }
 
