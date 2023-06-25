@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * JWT를 위한 커스텀 필터를 만들기 위한 클래스
+ * 2. JWT를 위한 커스텀 필터를 만들기 위한 클래스
  */
 public class JwtFilter extends GenericFilterBean {
 
