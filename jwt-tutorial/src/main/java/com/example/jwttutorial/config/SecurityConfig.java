@@ -1,9 +1,9 @@
 package com.example.jwttutorial.config;
 
-import com.example.jwttutorial.jwt.JwtAccessDeniedHandler;
-import com.example.jwttutorial.jwt.JwtAuthenticationEntryPoint;
-import com.example.jwttutorial.jwt.JwtSecurityConfig;
-import com.example.jwttutorial.jwt.TokenProvider;
+import com.example.jwttutorial.security.jwt.JwtAccessDeniedHandler;
+import com.example.jwttutorial.security.jwt.JwtAuthenticationEntryPoint;
+import com.example.jwttutorial.security.jwt.JwtSecurityConfig;
+import com.example.jwttutorial.security.jwt.TokenProvider;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

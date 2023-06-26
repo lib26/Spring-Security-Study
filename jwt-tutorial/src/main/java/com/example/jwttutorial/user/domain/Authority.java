@@ -1,4 +1,4 @@
-package com.example.jwttutorial.domain;
+package com.example.jwttutorial.user.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.example.jwttutorial.jwt;
+package com.example.jwttutorial.security.jwt;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

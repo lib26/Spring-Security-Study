@@ -1,4 +1,4 @@
-package com.example.jwttutorial.presentation;
+package com.example.jwttutorial.user.presentation;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
