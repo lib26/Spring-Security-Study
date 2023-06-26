@@ -69,7 +69,6 @@ public class SecurityConfig {
                 // 홈 화면, 토큰을 받기위한 api, 회원가입을 위한 api
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers("/api/hello", "/api/authenticate", "/api/signup").permitAll()
-                        .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest().authenticated()
                 )
 
