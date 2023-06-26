@@ -7,6 +7,7 @@ import com.example.jwttutorial.user.dto.UserDto;
 import com.example.jwttutorial.user.exception.DuplicateMemberException;
 import com.example.jwttutorial.user.exception.NotFoundMemberException;
 import com.example.jwttutorial.util.SecurityUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,15 +18,11 @@ import java.util.Collections;
  * 회원가입, 유저정보조회 등의 메소드를 만들기 위한 클래스
  */
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     /**
      * signup 메서드를 통해 가입한 회원은 USER ROLE을 가지고 있다.
@@ -58,8 +55,9 @@ public class UserService {
      */
     @Transactional(readOnly = true)
     public UserDto getUserWithAuthorities(String username) {
-        return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username).orElse(null));
-        // 존재하지 않는 예외 터져야하지 않나?
+        return UserDto.from(userRepository.findOneWithAuthoritiesByUsername(username)
+                .orElseThrow(() -> new NotFoundMemberException("Member not found"))
+        );
     }
 
     /**

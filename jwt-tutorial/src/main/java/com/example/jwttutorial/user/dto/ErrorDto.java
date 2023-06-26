@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.validation.FieldError;
 
 public class ErrorDto {
+
     private final int status;
     private final String message;
     private List<FieldError> fieldErrors = new ArrayList<>();

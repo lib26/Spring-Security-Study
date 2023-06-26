@@ -1,5 +1,6 @@
 package com.example.jwttutorial.util;
 
+import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -12,8 +13,7 @@ public class SecurityUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(SecurityUtil.class);
 
-    private SecurityUtil() {
-    }
+    private SecurityUtil() {}
 
     /**
      * Security Context의 Authentication 객체를 이용해 username을 리턴해주는 간단한 유틸성 메서드

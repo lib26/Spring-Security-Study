@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
  * 회원가입시에 사용할 dto
  */
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

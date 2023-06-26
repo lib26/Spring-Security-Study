@@ -4,6 +4,7 @@ import com.example.jwttutorial.security.jwt.JwtFilter;
 import com.example.jwttutorial.security.jwt.TokenProvider;
 import com.example.jwttutorial.user.dto.LoginDto;
 import com.example.jwttutorial.user.dto.TokenDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +21,11 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class AuthController {
 
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
-    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
-        this.tokenProvider = tokenProvider;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-    }
 
     /**
      * 로그인 API

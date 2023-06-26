@@ -7,10 +7,9 @@ import jakarta.validation.constraints.Size;
 
 /**
  * 로그인시 사용할 dto
- * @Vaild 관련 어노테이션이 추가되어있다.
+ * @Vaild 관련 어노테이션
  */
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

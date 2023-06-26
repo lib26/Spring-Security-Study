@@ -10,7 +10,6 @@ import lombok.*;
 @Entity
 @Table(name = "authority")
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

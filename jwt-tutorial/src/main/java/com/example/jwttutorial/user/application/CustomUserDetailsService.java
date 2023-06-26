@@ -2,6 +2,7 @@ package com.example.jwttutorial.user.application;
 
 import com.example.jwttutorial.user.domain.Repository.UserRepository;
 import com.example.jwttutorial.user.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +18,10 @@ import java.util.stream.Collectors;
  * Spring Security에서 중요한 부분중 하나인 UserDetailsService를 구현한 Custom-UserDetailsService
  */
 @Component("userDetailsService")
+@RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
-
-    public CustomUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     /**
      * 로그인시에 DB에서 유저정보와 권한정보를 가져오게 된다.
