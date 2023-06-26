@@ -39,6 +39,9 @@ public class SecurityUtil {
             username = (String) authentication.getPrincipal();
         }
 
+        // Optional은 NullPointerException을 방지하고 코드의 안정성을 높이기 위해 사용
+        // username이 null이면, Optional.empty()를 반환. 비어있는 Optional 객체 생성
+        // username이 null이 아니면, Optional.of(username)를 반환. 해당 값을 감싼 Optional 객체 생성
         return Optional.ofNullable(username);
     }
 }

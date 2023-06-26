@@ -6,6 +6,7 @@ import lombok.*;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class UserDto {
     @Size(min = 3, max = 50)
     private String username;
 
+    // 역직렬화(deserialize; JSON -> Java Object)할 때에만 접근이 허용
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     @Size(min = 3, max = 100)
@@ -35,7 +37,7 @@ public class UserDto {
     private Set<AuthorityDto> authorityDtoSet;
 
     public static UserDto from(User user) {
-        if(user == null) return null;
+        if (user == null) return null;
 
         return UserDto.builder()
                 .username(user.getUsername())
