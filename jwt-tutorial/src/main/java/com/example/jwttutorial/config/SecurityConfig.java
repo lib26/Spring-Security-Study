@@ -5,7 +5,6 @@ import com.example.jwttutorial.security.jwt.JwtAuthenticationEntryPoint;
 import com.example.jwttutorial.security.jwt.JwtSecurityConfig;
 import com.example.jwttutorial.security.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -42,6 +41,23 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 스프링 시큐리티는 '서블릿 필터' 기반으로 동작하면서 스프링의 많은 지원을 '함께' 사용할 수 있도록 했다.
+     * 서블릿과 스프링의 컨텍스트는 다르다. 서블릿은 톰캣과 같은 WAS 단에서 동작하며 모든 웹 요청을 먼저 처리한다.
+     * 앞선 필터의 과정을 모두 거치고 난 다음에야 요청은 스프링 컨텍스트로 넘어온다.
+     * 다시 말하면, 필터에서는 스프링의 기능을 사용할 수 없다는 말이다.
+     * 그렇다면 필터에서도 스프링 기능을 사용하는 방법을 어떻게 만들어냈을까?
+     *
+     * 스프링 시큐리티 프레임워크의 동작 원리와 SecurityFilterChain의 역할
+     * Client의 요청 -> 여러 서블릿 필터를 거치면서 그 중 DelegatingFilterProxy에 도달 ->
+     * -> FilterChainProxy(Spring Bean 객체)에게 요청 처리를 '위임' -> SecurityFilterChain ->
+     * -> SecurityFilterChain 객체에는 SecurityFilterChain 타입의 List가 있음 ->
+     * -> 하나의 SecurityFilterChain 구현체는 List<Filter>를 갖고 있음
+     * -> 즉, 요청에 맞는 SecurityFilterChain 구현체가 FilterCHainProxy(Spring Bean 객체)에게 자신의 필터 체인을 제공함.
+     * 이렇게 모든 필터를 순회하면서 인증 및 인가 처리를 한다.
+     * 그리고 마지막 필터까지 예외가 발생하지 않으면 나머지 필터를 건너다 결국 스프링의 DispatcherServlet으로 넘어가고 비즈니스 로직을 만나게 된다.
+     * 참고자료(매우 유익..) : https://somuchthings.tistory.com/195
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
